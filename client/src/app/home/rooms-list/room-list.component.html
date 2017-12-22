@@ -1,0 +1,30 @@
+<div *ngIf="isShown" class="panel panel-default">
+    <div class="panel-heading">Chat rooms list</div>
+    <div class="panel-body">
+        <form class="form-horizontal" (ngSubmit)="f.form.valid && saveRoom()" #f="ngForm">
+            <div class="form-group" style="margin-bottom: initial">
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="body" required [(ngModel)]="model.roomName" name="roomName" placeholder="New room name" #roomname="ngModel">
+                </div>
+                <div class="col-sm-3">
+                    <button type="submit" class="btn btn-primary">Add new room</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ul class="list-group">
+        <li *ngFor="let room of rooms" class="list-group-item room-list-item" (click)="goToRoom(room)">
+            {{room.roomName}}
+        </li>
+    </ul>
+</div>
+
+<style>
+    .room-list-item {
+        cursor: pointer;
+    }
+
+    .room-list-item:hover {
+        background: #eee;
+    }
+</style>

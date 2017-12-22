@@ -1,0 +1,52 @@
+<div class="row header">
+    <div class="col-md-10">
+        <h3 class="text-capitalize">{{ roomName }}</h3>
+    </div>
+    <div class="col-md-2">
+        <a *ngIf="this.currentRoom.roomName !== ''" class="btn btn-default btn-sm" style="margin-top: 20px" routerLink="/home">Back to list</a>
+    </div>
+</div>
+
+<div class="scroll-parent" *ngIf="this.currentRoom.roomName !== ''">
+    <ul class="messages-list" #scrollMe>
+        <li *ngFor="let message of messages" [ngClass]="{'owner': message.author === loggedInUser}">
+            <b><span class="author text-capitalize">{{ message.author}}:</span></b> <span class="message">{{ message.body }}</span>
+        </li>
+    </ul>
+
+    <form class="form-horizontal" (ngSubmit)="f.form.valid && submitMessage()" #f="ngForm" class="col-md-12">
+        <div class="form-group">
+            <div class="col-sm-9">
+                <input type="text" class="form-control" id="body" required [(ngModel)]="model.body" name="body" placeholder="Type a message" #message="ngModel">
+            </div>
+            <div class="col-sm-3">
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<style>
+    .header {
+        margin-bottom: 50px;
+    }
+
+    .messages-list {
+        list-style: none;
+    }
+
+    .messages-list li {
+        padding: 5px 0;
+    }
+
+    .author {
+        background-color: #eee;
+        padding: 5px;
+        margin-right: 6px;
+    }
+
+    .owner .author {
+        background-color: #6495ed;
+        color: #fff;
+    }
+</style>
