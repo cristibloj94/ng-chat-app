@@ -7,7 +7,8 @@
     "build": "node -e \"console.log(child_process.execSync(os.type()==='Windows_NT'?'ng.cmd build --watch false --output-path dist':'ng build --watch false --output-path dist', {cwd: 'client'}).toString('utf8'))\"",
     "start": "node ./bin/www",
     "live_build": "node -e \"console.log(child_process.execSync(os.type()==='Windows_NT'?'ng.cmd build --watch true --output-path dist':'ng build --watch true --output-path dist', {cwd: 'client'}).toString('utf8'))\"",
-    "live_start": "node ./node_modules/nodemon/bin/nodemon.js"
+    "live_start": "node ./node_modules/nodemon/bin/nodemon.js",
+    "test": "./node_modules/.bin/jasmine-node spec"
   },
   "dependencies": {
     "body-parser": "~1.15.2",
@@ -16,8 +17,10 @@
     "debug": "~2.2.0",
     "ejs": "~2.5.2",
     "express": "~4.14.0",
+    "jasmine-node": "^1.14.5",
     "mongoose": "^4.6.6",
     "morgan": "~1.7.0",
+    "request": "^2.83.0",
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.7.3"
   },
